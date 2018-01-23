@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="container">
+    <div class="row">
+        <h1>Objectives</h1>
+    </div>
+
+    <hr>
+    <div class="row">
+        <div class="col col-lg-3 col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    Filter
+                </div>
+                <div class="card-body">
+                    <form>
+                        <div class="form-group">
+                            <label for="game">Game:</label>
+                            <select id="game" class="form-control form-control-md">
+                              <option>All</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="skill">Skill:</label>
+                            <select id="skill" class="form-control form-control-md">
+                              <option>All</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="location">Location:</label>
+                            <select id="location" class="form-control form-control-md">
+                              <option>All</option>
+                            </select>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col col-lg-9 col-md-12">
+            <table class="table table-responsive-md">
+                <thead>
+                    <tr>
+                        <th scope="col">Name</th>
+                        <th scope="col">Skill</th>
+                        <th scope="col">Location</th>
+                        <th scope="col">Game</th>
+                        <th scope="col">Actions</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    {% for obj in objectives %}
+                        {% if obj.complete %}
+                            <tr class="table-success">
+                        {% else %}
+                            <tr>
+                        {% endif %}
+                            <td>{{ obj.name }}</td>
+                            <td>{{ obj.skill.name }} ({{ obj.skill.level }})</td>
+                            <td>{{ obj.location.name }}</td>
+                            <td>{{ obj.game.name }}</td>
+                            <td><button type="button" class="btn btn-primary">Edit</button></td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    </div>
+
+{% endblock %}
